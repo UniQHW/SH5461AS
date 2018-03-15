@@ -57,7 +57,7 @@ void Display::print(const char num[USED_DIGITS]) {
 #else
 
 void Display::print(const char num[USED_DIGITS+1]) {
-  int next_char_dp = 0;
+  bool next_char_dp = false;
   int is_dp_num = 0;
 
   for (int i = 0; i < strlen(num); i++) {
