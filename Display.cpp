@@ -37,12 +37,9 @@ num_segs_t num_segs
   {true, true, true, true, false, true, true}      // 9
 };
 
-void Display::print(const char num[3]) {
-  for (int i = 0; i < 3; i++) {
-    if(num[i] == '\0') {
-      continue;
-    }
-
+#ifdef DISABLE_DP
+void Display::print(const char num[USED_DIGITS]) {
+  for (int i = 0; i < strlen(num); i++) {
     for (int j = 0; j < 7; j++) {
       segments[j]->toggle(num_segs[num[i] - 0x30][j]);
     }
@@ -56,3 +53,34 @@ void Display::print(const char num[3]) {
     digits[i]->toggle(false);
   }
 }
+
+#else
+
+void Display::print(const char num[USED_DIGITS+1]) {
+  int next_char_dp = 0;
+  int is_dp_num = 0;
+
+  for (int i = 0; i < strlen(num); i++) {
+    for (int j = 0; j < 7; j++) {
+      segments[j]->toggle(num_segs[num[i] - 0x30][j]);
+    }
+
+    next_char_dp  = (i + 1 < USED_DIGITS+1 && num[i + 1] == '.');
+
+    /* Add 1ms offset for previous digit to clear, in order to prevent flickering from upcoming digit */
+    delay(1);
+    digits[i - is_dp_num]->toggle(true);
+    dp->toggle(next_char_dp);
+
+    /* Provide digit sufficient time to display */
+    delay(1);
+    digits[i - is_dp_num]->toggle(false);
+    dp->toggle(false);
+
+    if (next_char_dp && !is_dp_num) {
+      is_dp_num = 1;
+      i++;
+    }
+  }
+}
+#endif

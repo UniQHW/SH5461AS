@@ -24,6 +24,10 @@
 #ifndef DISPLAY_H_INCLUDED
 #define DISPLAY_H_INCLUDED
 
+#ifndef USED_DIGITS
+#define USED_DIGITS 4
+#endif
+
 #include <Arduino.h>
 
 #include "Segment.h"
@@ -35,11 +39,18 @@ class Display {
 
 private:
   Segment *segments[7];
-  Digit *digits[3];
+  Digit *digits[USED_DIGITS];
+  DecimalPoint *dp;
 
 public:
-  Display(byte digit_pins[3], byte segment_pins[7]) {
-    for (int i = 0; i < 3; i++) {
+#ifdef DISABLE_DP
+  Display(byte digit_pins[USED_DIGITS], byte segment_pins[7]) {
+#else
+  Display(byte digit_pins[USED_DIGITS], byte segment_pins[7], byte dp_pin) {
+    dp = new DecimalPoint(dp_pin);
+    dp->toggle(false);
+#endif
+    for (int i = 0; i < USED_DIGITS; i++) {
       digits[i] = new Digit(digit_pins[i]);
       digits[i]->toggle(false);
     }
@@ -50,8 +61,11 @@ public:
     }
   }
 
-  void print(const char num[3]);
-
+#ifdef DISABLE_DP
+  void print(const char num[USED_DIGITS]);
+#else
+  void Display::print(const char num[USED_DIGITS+1]);
+#endif
 };
 
 #endif // DISPLAY_H_INCLUDED
