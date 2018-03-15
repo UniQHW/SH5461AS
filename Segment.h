@@ -39,4 +39,6 @@ private:
   bool state = LOW;
 };
 
+typedef Segment DecimalPoint;
+
 #endif // SEGMENT_H_INCLUDED
