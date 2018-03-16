@@ -31,10 +31,8 @@ void Segment::toggle() {
 void Segment::toggle(bool arg_state) {
   /* Only enable or disable segment if necessary
    * (Ex. If number 8 has been displayed prior to displaying number 9, only disable segment 'e') */
-  if (state == arg_state) {
-    return;
+  if (state != arg_state) {
+    state = arg_state;
+    digitalWrite(pin, state);
   }
-
-  state = arg_state;
-  digitalWrite(pin, state);
 }
