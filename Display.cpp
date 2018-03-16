@@ -112,3 +112,27 @@ void Display::toggle(bool arg_state) {
     }
   }
 }
+
+/* Enable (all) segments */
+void Display::fill(bool all = true) {
+  /* Turn on all displays */
+  if (all) {
+    toggle(true);
+  }
+
+  for (int i = 0; i < 7; i++) {
+    segments[i]->toggle(true);
+  }
+}
+
+/* Disable (all) segments */
+void Display::empty(bool all = true) {
+  /* Turn on all displays */
+  if (all) {
+    toggle(true);
+  }
+
+  for (int i = 0; i < 7; i++) {
+    segments[i]->toggle(false);
+  }
+}

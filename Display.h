@@ -79,6 +79,12 @@ public:
   /* Enable/Disable all digits */
   void toggle();
   void toggle(bool state);
+
+  /* Enable (all) segments */
+  void fill(bool all);
+
+  /* Disable (all) segments */
+  void empty(bool all);
 };
 
 #endif // DISPLAY_H_INCLUDED
