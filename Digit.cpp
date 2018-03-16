@@ -28,7 +28,7 @@ void Digit::toggle() {
     digitalWrite(pin, state);
 }
 
-void Digit::toggle(bool a_state) {
-  state = !a_state;
+void Digit::toggle(bool arg_state) {
+  state = !arg_state;
   digitalWrite(pin, state);
 }

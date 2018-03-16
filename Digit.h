@@ -31,7 +31,7 @@ class Digit {
 public:
   Digit(byte pin) : pin(pin) {};
   void toggle();
-  void toggle(bool a_state);
+  void toggle(bool arg_state);
 
 private:
   const bool OFF = HIGH;

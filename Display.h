@@ -78,7 +78,7 @@ public:
 
   /* Enable/Disable all digits */
   void toggle();
-  void toggle(bool state);
+  void toggle(bool arg_state);
 
   /* Enable (all) segments */
   void fill(bool all);
