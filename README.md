@@ -81,7 +81,7 @@ Preprocessors must be set **BEFORE** the library is included:
 #include "Display.h"
 ```
 
-Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in (`class Dispaly`)[#class-display])
+Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in [`class Dispaly`)](#class-display))
 
 ## Library Overview
 
