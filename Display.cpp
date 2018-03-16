@@ -125,12 +125,7 @@ void Display::fill(bool all = true) {
 }
 
 /* Disable (all) segments */
-void Display::empty(bool all = true) {
-  /* Turn on all displays */
-  if (all) {
-    toggle(true);
-  }
-
+void Display::empty() {
   for (int i = 0; i < 7; i++) {
     segments[i]->toggle(false);
   }

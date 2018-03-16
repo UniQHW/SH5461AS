@@ -83,8 +83,8 @@ public:
   /* Enable (all) segments */
   void fill(bool all);
 
-  /* Disable (all) segments */
-  void empty(bool all);
+  /* Disable all segments */
+  void empty();
 };
 
 #endif // DISPLAY_H_INCLUDED
