@@ -39,6 +39,9 @@ typedef bool num_segs_t[10][7];
 /* Display - Handles digits and segments */
 class Display {
 
+private:
+  bool state = false;
+
 public:
   /* Abstract HW Access */
   Digit *digits[USED_DIGITS];   // Stores digit objects to activate/disable COMs
@@ -72,6 +75,10 @@ public:
 #else
   void print(const char num[USED_DIGITS+1]);
 #endif
+
+  /* Enable/Disable all digits */
+  void toggle();
+  void toggle(bool state);
 };
 
 #endif // DISPLAY_H_INCLUDED

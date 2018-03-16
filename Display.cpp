@@ -95,3 +95,20 @@ void Display::print(const char num[USED_DIGITS+1]) {
   }
 }
 #endif
+
+/* Enable/Disable all digits */
+void Display::toggle() {
+  state = !state;
+  for (int i = 0; i < USED_DIGITS; i++) {
+    digits[i]->toggle(state);
+  }
+}
+
+void Display::toggle(bool arg_state) {
+  if (state != arg_state) {
+    state = arg_state;
+    for (int i = 0; i < USED_DIGITS; i++) {
+      digits[i]->toggle(state);
+    }
+  }
+}
