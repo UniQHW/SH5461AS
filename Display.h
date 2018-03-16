@@ -24,6 +24,7 @@
 #ifndef DISPLAY_H_INCLUDED
 #define DISPLAY_H_INCLUDED
 
+/* Override before including if less digits/COMs are used */
 #ifndef USED_DIGITS
 #define USED_DIGITS 4
 #endif
@@ -35,32 +36,38 @@
 
 typedef bool num_segs_t[10][7];
 
+/* Display - Handles digits and segments */
 class Display {
 
 private:
-  Segment *segments[7];
-  Digit *digits[USED_DIGITS];
-  DecimalPoint *dp;
+  /* Abstract HW Access */
+  Digit *digits[USED_DIGITS];   // Stores digit objects to activate/disable COMs
+  Segment *segments[7];         // Stores segment objects from a -g (abc..g) to activate and disable segments
+  DecimalPoint *dp;             // Stores dp object to activate/disable dp
 
 public:
 #ifdef DISABLE_DP
   Display(byte digit_pins[USED_DIGITS], byte segment_pins[7]) {
 #else
   Display(byte digit_pins[USED_DIGITS], byte segment_pins[7], byte dp_pin) {
+    /* Assign dp */
     dp = new DecimalPoint(dp_pin);
     dp->toggle(false);
 #endif
+    /* Assign Digits */
     for (int i = 0; i < USED_DIGITS; i++) {
       digits[i] = new Digit(digit_pins[i]);
       digits[i]->toggle(false);
     }
 
+    /* Assign Segments */
     for (int i = 0; i < 7; i++) {
       segments[i] = new Segment(segment_pins[i]);
       segments[i]->toggle(false);
     }
   }
 
+/* Print to 4 digit segment display */
 #ifdef DISABLE_DP
   void print(const char num[USED_DIGITS]);
 #else

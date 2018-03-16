@@ -26,6 +26,7 @@
 
 #include <Arduino.h>
 
+/* Digit - Hardware abstraction for COM pins */
 class Digit {
 public:
   Digit(byte pin) : pin(pin) {};

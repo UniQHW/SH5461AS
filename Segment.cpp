@@ -29,6 +29,8 @@ void Segment::toggle() {
 }
 
 void Segment::toggle(bool a_state) {
+  /* Only enable or disable segment if necessary
+   * (Ex. If number 8 has been displayed prior to displaying number 9, only disable segment 'e') */ 
   if (state == a_state) {
     return;
   }

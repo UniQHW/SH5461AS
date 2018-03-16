@@ -26,6 +26,7 @@
 
 #include <Arduino.h>
 
+/* Segment - Hardware abstraction for segments */
 class Segment {
 
 public:
