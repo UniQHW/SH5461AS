@@ -70,7 +70,7 @@ public:
 #ifdef DISABLE_DP
   void print(const char num[USED_DIGITS]);
 #else
-  void Display::print(const char num[USED_DIGITS+1]);
+  void print(const char num[USED_DIGITS+1]);
 #endif
 };
 
