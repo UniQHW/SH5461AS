@@ -88,9 +88,8 @@ void Display::print(const char num[USED_DIGITS+1]) {
     dp->toggle(false);
 
     /* Indicate that we're wokring with a decimal point number */
-    if (next_char_dp && !is_dp_num) {
+    if (next_char_dp && !is_dp_num && ++i) {
       is_dp_num = 1;
-      i++;
     }
   }
 }
