@@ -39,13 +39,12 @@ typedef bool num_segs_t[10][7];
 /* Display - Handles digits and segments */
 class Display {
 
-private:
+public:
   /* Abstract HW Access */
   Digit *digits[USED_DIGITS];   // Stores digit objects to activate/disable COMs
   Segment *segments[7];         // Stores segment objects from a -g (abc..g) to activate and disable segments
   DecimalPoint *dp;             // Stores dp object to activate/disable dp
 
-public:
 #ifdef DISABLE_DP
   Display(byte digit_pins[USED_DIGITS], byte segment_pins[7]) {
 #else
