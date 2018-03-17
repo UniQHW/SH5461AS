@@ -6,12 +6,43 @@ This library has been written in order to help a pupil of mine with his Arduino 
 
 ![gif]()
 
+## Contents
+
+- [Installation](#installation)
+- [Importing/Including](#importingincluding)
+- [Example](#example)
+- [Flags](#flags)
+- [Library Overview](#library-overview)
+	- [`class Display`](#class-display)
+		- [Constructor](#constructor)
+		- [Members](#members)
+		- [Member Functions](#member-functions)
+			- [`void print(const char[])`](#void-printconst-char)
+				- [Example](#example)
+			- [`void toggle()`](#void-toggle)
+			- [`void toggle(bool arg_state)`](#void-togglebool-argstate)
+			- [`void fill(bool all = true)`](#void-fillbool-all-true)
+			- [`void empty()`](#void-empty)
+	- [`class Digit`](#class-digit)
+		- [Members](#members)
+		- [Member Functions](#member-functions)
+			- [`void toggle()`](#void-toggle)
+			- [`void toggle(bool arg_state)`](#void-togglebool-argstate)
+	- [`class Segment`](#class-segment)
+		- [Members](#members)
+		- [Member Functions](#member-functions)
+			- [`void toggle()`](#void-toggle)
+			- [`void toggle(bool arg_state)`](#void-togglebool-argstate)
+- [License](#license)
+
 ## Installation
 
 Download the repository as a zip
+
 ![Downloading the repo](img/.png)
 
 After obtaining a local copy of the library, import the library in the [Arduino IDE](https://create.arduino.cc/):
+
 ![Importing the library](img/Import.png)
 
 ## Importing/Including
@@ -54,6 +85,7 @@ void loop() {
 ```
 
 Setup used for example:
+
 ![fritzing]()
 
 Result:
@@ -81,7 +113,7 @@ Preprocessors must be set **BEFORE** the library is included:
 #include "Display.h"
 ```
 
-Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in [`class Dispaly`)](#class-display))
+Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in (`class Dispaly`)[#class-display])
 
 ## Library Overview
 
@@ -184,7 +216,7 @@ A hardware abstraction for COM pins
 The constructor is provided with the necessary pin information in order to successfully communicate with the display.
 
 ```cpp
-Segment(byte pin);
+Digit(byte pin);
 ```
 
 |Parameter|Description|Example|
@@ -197,3 +229,94 @@ Segment(byte pin);
 |------|------|-----------|
 |`byte pin`|Private|COM pin|
 |`bool state`|Private|A private state buffer for `toggle()`|
+
+#### Member Functions
+
+##### `void toggle()`
+> Access: Public
+
+Toggles digit on or off, depending on it's previous state.
+
+|Digit prior toggle|Digit after toggle|
+|------------------|------------------|
+|OFF|ON|
+|ON|OFF|
+
+##### `void toggle(bool arg_state)`
+> Access: Public
+
+Sets digit to the provided state.
+
+|State|Digit after toggle|
+|-----|------------------|
+|true|ON|
+|false|OFF|
+
+### `class Segment`
+A hardware abstraction for segments
+
+The constructor is provided with the necessary pin information in order to successfully communicate with the display.
+
+```cpp
+Segment(byte pin);
+```
+
+|Parameter|Description|Example|
+|---------|-----------|-------|
+|`byte pin`|Segment pin|`A0`|
+
+
+#### Members
+
+|Member|Access|Description|
+|------|------|-----------|
+|`byte pin`|Private|Segment pin|
+|`bool state`|Private|A private state buffer for `toggle()`|
+
+#### Member Functions
+
+##### `void toggle()`
+> Access: Public
+
+Toggles segment on or off, depending on it's previous state.
+
+|Segment prior toggle|Segment after toggle|
+|--------------------|--------------------|
+|OFF|ON|
+|ON|OFF|
+
+##### `void toggle(bool arg_state)`
+> Access: Public
+
+Sets segment to the provided state.
+
+|State|Segment after toggle|
+|-----|--------------------|
+|true|ON|
+|false|OFF|
+
+## License
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2018 Patrick Pedersen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
