@@ -39,11 +39,11 @@ This library has been written in order to help a pupil of mine with his Arduino 
 
 Download the repository as a zip
 
-![Downloading the repo](img/.png)
+![Downloading the repo](img/DownloadZip.png)
 
 After obtaining a local copy of the library, import the library in the [Arduino IDE](https://create.arduino.cc/):
 
-![Importing the library](img/Import.png)
+![Importing the library](https://raw.githubusercontent.com/UniQHW/EasyButton_Handler/master/img/Import.png)
 
 ## Importing/Including
 
