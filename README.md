@@ -98,8 +98,8 @@ The following preprocessor directives may be used to optimize the library:
 
 |Preprocessor |Description          |
 |-------------|---------------------|
-|`#DISABLE_DP`|Disables support for decimal points, minimally increasing frame rate|
-|`#USED_DIGITS N`|Limits display to only use first N digits|
+|#DISABLE_DP|Disables support for decimal points, minimally increasing frame rate|
+|#USED_DIGITS N|Limits display to only use first N digits|
 
 
 Preprocessors must be set **BEFORE** the library is included:
@@ -113,7 +113,7 @@ Preprocessors must be set **BEFORE** the library is included:
 #include "Display.h"
 ```
 
-Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in (`class Dispaly`)[#class-display])
+Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in [`class Dispaly`](#class-display))
 
 ## Library Overview
 
@@ -143,9 +143,9 @@ The constructor is provided with the necessary pin information in order to succe
 
 |Parameter|Description|Example|
 |---------|-----------|-------|
-|`byte digit_pins[USED_DIGITS]`|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {A1, A2, A3, A4};`|
-|`byte segment_pins[7]`|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {A5, 12, 11, 0, A4, A0, 10};`|
-|`byte dp_pin`|Pin to control Decimal Point. Leave out if `#DISABLE_DP` has been defined|`1`|
+|byte digit_pins[USED_DIGITS]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {A1, A2, A3, A4};`|
+|byte segment_pins[7]|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {A5, 12, 11, 0, A4, A0, 10};`|
+|byte dp_pin|Pin to control Decimal Point. Leave out if `#DISABLE_DP` has been defined|`1`|
 
 ![datasheet](http://mklec.com/image/data/displays/7-segment-4-digit-display-common-anode-12-pin--pinout.png)
 
@@ -153,10 +153,10 @@ The constructor is provided with the necessary pin information in order to succe
 
 |Member|Access|Description|
 |------|------|-----------|
-|`bool state`|Private|A private state buffer for `toggle()`|
-|`Digit *digits[USED_DIGITS]`|Public|Stores [digit objects](#digit) to activate/disable COMs|
-|`Segment *segments[7]`|Public|Stores [segment objects](#segment) from `a - g (abc...g)` to activate and disable segments|
-|`DecimalPoint *dp`|Public|Stores dp object (alias to [segment objects](#segment)) to activate/disable dp|
+|bool state|Private|A private state buffer for `toggle()`|
+|Digit *digits[USED_DIGITS]|Public|Stores [digit objects](#digit) to activate/disable COMs|
+|Segment *segments[7]|Public|Stores [segment objects](#segment) from `a - g (abc...g)` to activate and disable segments|
+|DecimalPoint *d|Public|Stores dp object (alias to [segment objects](#segment)) to activate/disable dp|
 
 #### Member Functions
 
@@ -221,14 +221,14 @@ Digit(byte pin);
 
 |Parameter|Description|Example|
 |---------|-----------|-------|
-|`byte pin`|COM pin|`A1`|
+|byte pin|COM pin|`A1`|
 
 #### Members
 
 |Member|Access|Description|
 |------|------|-----------|
-|`byte pin`|Private|COM pin|
-|`bool state`|Private|A private state buffer for `toggle()`|
+|byte pin|Private|COM pin|
+|bool state|Private|A private state buffer for `toggle()`|
 
 #### Member Functions
 
@@ -263,15 +263,15 @@ Segment(byte pin);
 
 |Parameter|Description|Example|
 |---------|-----------|-------|
-|`byte pin`|Segment pin|`A0`|
+|byte pin|Segment pin|`A0`|
 
 
 #### Members
 
 |Member|Access|Description|
 |------|------|-----------|
-|`byte pin`|Private|Segment pin|
-|`bool state`|Private|A private state buffer for `toggle()`|
+|byte pin|Private|Segment pin|
+|bool state|Private|A private state buffer for `toggle()`|
 
 #### Member Functions
 
