@@ -65,28 +65,28 @@ The following example prints `1.234` to the display
 #include "Digit.h"
 #include "Display.h"
 
-const byte digit_pins[3] {A1, A2, A3}; // From com1 - com4
-const byte segment_pins[7] {A5, 12, 11, 0, A4, A0, 10}; // From a - g (abc...g)
-const byte dp_pin = 1;
+const byte digit_pins[4] {6, 9, 10}; // From com1 - com4
+const byte segment_pins[7] {7, 11, 2, 4, 5, 8, 1}; // From a - g (abc...g)
+const byte dp_pin = 3;
 
-Display *d
+Display *d;
 
 void setup() {
   for (int i = 0; i <= A5; i++) {
     pinMode(i, OUTPUT);
   }
 
-  d = new Display(digit_pins, segment_pins, 1);
+  d = new Display(digit_pins, segment_pins, dp_pin);
 }
 
 void loop() {
-  d->print("1.234") // Must be looped!
+  d->print("1.234"); // Must be looped!
 }
 ```
 
 Setup used for example:
 
-![fritzing]()
+![fritzing](img/Fritzing.svg)
 
 Result:
 
