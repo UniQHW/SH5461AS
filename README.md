@@ -65,7 +65,7 @@ The following example prints `1.234` to the display
 #include "Digit.h"
 #include "Display.h"
 
-const byte digit_pins[4] {6, 9, 10}; // From com1 - com4
+const byte digit_pins[4] {6, 9, 10, 0}; // From com1 - com4
 const byte segment_pins[7] {7, 11, 2, 4, 5, 8, 1}; // From a - g (abc...g)
 const byte dp_pin = 3;
 
