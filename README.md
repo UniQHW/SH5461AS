@@ -167,15 +167,6 @@ If `\0` has been provided, no number is displayed (Ex: `print("1\0\01")` will di
 
 Because speed is crucial, this function provides no error-checking. As a result, if too many, or invalid characters have been specified, the display will return unpredictable/wrong results.
 
-###### Example
-```cpp
-void loop() {
-  d->print("1.234")
-}
-```
-
-![result](img/Result.png)
-
 ##### `void toggle()`
 > Access: Public
 
