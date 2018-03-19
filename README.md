@@ -99,14 +99,12 @@ The following preprocessor directives may be used to optimize the library:
 |Preprocessor |Description          |
 |-------------|---------------------|
 |#DISABLE_DP|Disables support for decimal points, minimally increasing frame rate|
-|#USED_DIGITS N|Limits display to only use first N digits|
 
 
 Preprocessors must be set **BEFORE** the library is included:
 
 ```cpp
 #define DISABLE_DP
-#define USED_DIGITS 3
 
 #include "Segment.h"
 #include "Digit.h"
@@ -135,15 +133,15 @@ The constructor is provided with the necessary pin information in order to succe
 
 ```cpp
 #ifdef DISABLE_DP
-  Display(byte digit_pins[USED_DIGITS], byte segment_pins[7])
+  Display(byte digit_pins[4], byte segment_pins[7])
 #else
-  Display(byte digit_pins[USED_DIGITS], byte segment_pins[7], byte dp_pin)
+  Display(byte digit_pins[4], byte segment_pins[7], byte dp_pin)
 #endif
 ```
 
 |Parameter|Description|Example|
 |---------|-----------|-------|
-|byte digit_pins[USED_DIGITS]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {A1, A2, A3, A4};`|
+|byte digit_pins[4]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {A1, A2, A3, A4};`|
 |byte segment_pins[7]|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {A5, 12, 11, 0, A4, A0, 10};`|
 |byte dp_pin|Pin to control Decimal Point. Leave out if `#DISABLE_DP` has been defined|`1`|
 
@@ -154,7 +152,7 @@ The constructor is provided with the necessary pin information in order to succe
 |Member|Access|Description|
 |------|------|-----------|
 |bool state|Private|A private state buffer for `toggle()`|
-|Digit *digits[USED_DIGITS]|Public|Stores [digit objects](#digit) to activate/disable COMs|
+|Digit *digits[4]|Public|Stores [digit objects](#digit) to activate/disable COMs|
 |Segment *segments[7]|Public|Stores [segment objects](#segment) from `a - g (abc...g)` to activate and disable segments|
 |DecimalPoint *d|Public|Stores dp object (alias to [segment objects](#segment)) to activate/disable dp|
 

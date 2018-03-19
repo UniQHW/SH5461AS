@@ -40,7 +40,7 @@ num_segs_t num_segs
 };
 
 #ifdef DISABLE_DP
-void Display::print(const char num[USED_DIGITS]) {
+void Display::print(const char num[4]) {
 
   /* Display one digit at a time */
   for (int i = 0; i < strlen(num); i++) {
@@ -62,7 +62,7 @@ void Display::print(const char num[USED_DIGITS]) {
 
 #else
 
-void Display::print(const char num[USED_DIGITS+1]) {
+void Display::print(const char num[5]) {
   bool next_char_dp = false;
   int is_dp_num = 0;
 
@@ -75,7 +75,7 @@ void Display::print(const char num[USED_DIGITS+1]) {
     }
 
     /* Next character is decimal point */
-    next_char_dp  = (i + 1 < USED_DIGITS+1 && num[i + 1] == '.');
+    next_char_dp  = (i + 1 < 5 && num[i + 1] == '.');
 
     /* Add 1ms offset for previous digit to clear, in order to prevent flickering from upcoming digit */
     delay(1);
@@ -98,7 +98,7 @@ void Display::print(const char num[USED_DIGITS+1]) {
 /* Enable/Disable all digits */
 void Display::toggle() {
   state = !state;
-  for (int i = 0; i < USED_DIGITS; i++) {
+  for (int i = 0; i < 4; i++) {
     digits[i]->toggle(state);
   }
 }
@@ -106,7 +106,7 @@ void Display::toggle() {
 void Display::toggle(bool arg_state) {
   if (state != arg_state) {
     state = arg_state;
-    for (int i = 0; i < USED_DIGITS; i++) {
+    for (int i = 0; i < 4; i++) {
       digits[i]->toggle(state);
     }
   }

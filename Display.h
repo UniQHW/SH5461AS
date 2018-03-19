@@ -24,11 +24,6 @@
 #ifndef DISPLAY_H_INCLUDED
 #define DISPLAY_H_INCLUDED
 
-/* Override before including if less digits/COMs are used */
-#ifndef USED_DIGITS
-#define USED_DIGITS 4
-#endif
-
 #include <Arduino.h>
 
 #include "Segment.h"
@@ -44,20 +39,20 @@ private:
 
 public:
   /* Abstract HW Access */
-  Digit *digits[USED_DIGITS];   // Stores digit objects to activate/disable COMs
+  Digit *digits[4];   // Stores digit objects to activate/disable COMs
   Segment *segments[7];         // Stores segment objects from a -g (abc..g) to activate and disable segments
   DecimalPoint *dp;             // Stores dp object to activate/disable dp
 
 #ifdef DISABLE_DP
-  Display(byte digit_pins[USED_DIGITS], byte segment_pins[7]) {
+  Display(byte digit_pins[4], byte segment_pins[7]) {
 #else
-  Display(byte digit_pins[USED_DIGITS], byte segment_pins[7], byte dp_pin) {
+  Display(byte digit_pins[4], byte segment_pins[7], byte dp_pin) {
     /* Assign dp */
     dp = new DecimalPoint(dp_pin);
     dp->toggle(false);
 #endif
     /* Assign Digits */
-    for (int i = 0; i < USED_DIGITS; i++) {
+    for (int i = 0; i < 4; i++) {
       digits[i] = new Digit(digit_pins[i]);
       digits[i]->toggle(false);
     }
@@ -71,9 +66,9 @@ public:
 
 /* Print to 4 digit segment display */
 #ifdef DISABLE_DP
-  void print(const char num[USED_DIGITS]);
+  void print(const char num[4]);
 #else
-  void print(const char num[USED_DIGITS+1]);
+  void print(const char num[5]);
 #endif
 
   /* Enable/Disable all digits */
