@@ -4,7 +4,7 @@ Just another library to communicate with the SHA5461AS 4 Digit Segment Display.
 
 This library has been written in order to help a pupil of mine with his Arduino project.
 
-![gif]()
+![gif](img/Animation.gif)
 
 ## Contents
 
@@ -90,7 +90,7 @@ Setup used for example:
 
 Result:
 
-![result](img/result.png)
+![result](img/Result.png)
 
 ## Flags
 
@@ -174,7 +174,7 @@ void loop() {
 }
 ```
 
-![result](img/result.png)
+![result](img/Result.png)
 
 ##### `void toggle()`
 > Access: Public
@@ -200,8 +200,6 @@ Sets **all** digits to the provided state.
 > Access: Public
 
 Turns all segments and decimal points to '**ON**' (unless `#DISABLE_DP` has been defined). If `bool all` has been set to `false`, only digits that are '**ON**' will be filled.
-
-![filled]()
 
 ##### `void empty()`
 > Access: Public
