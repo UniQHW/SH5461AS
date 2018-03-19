@@ -81,7 +81,7 @@ public:
   void toggle(bool arg_state);
 
   /* Enable (all) segments */
-  void fill(bool all);
+  void fill(bool all = true);
 
   /* Disable all segments */
   void empty();

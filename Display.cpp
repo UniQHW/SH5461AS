@@ -113,7 +113,7 @@ void Display::toggle(bool arg_state) {
 }
 
 /* Enable (all) segments */
-void Display::fill(bool all = true) {
+void Display::fill(bool all) {
   /* Turn on all displays */
   if (all) {
     toggle(true);
