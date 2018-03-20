@@ -41,7 +41,7 @@ Download the repository as a zip
 
 ![Downloading the repo](img/DownloadZip.png)
 
-After obtaining a local copy of the library, import the library in the [Arduino IDE](https://create.arduino.cc/):
+After obtaining a local copy, import the library in the [Arduino IDE](https://create.arduino.cc/):
 
 ![Importing the library](https://raw.githubusercontent.com/UniQHW/EasyButton_Handler/master/img/Import.png)
 
@@ -98,8 +98,7 @@ The following preprocessor directives may be used to optimize the library:
 
 |Preprocessor |Description          |
 |-------------|---------------------|
-|#DISABLE_DP|Disables support for decimal points, minimally increasing frame rate|
-
+|#DISABLE_DP|Disables support for decimal points, minimally increasing the frame rate|
 
 Preprocessors must be set **BEFORE** the library is included:
 
@@ -111,8 +110,6 @@ Preprocessors must be set **BEFORE** the library is included:
 #include "Display.h"
 ```
 
-Turning off specific digits disregarding the position, can be done using the `\0` character (See `print` in [`class Dispaly`](#class-display))
-
 ## Library Overview
 
 The library provides a total of three classes:
@@ -120,10 +117,10 @@ The library provides a total of three classes:
 |Class|Defined In|Description|
 |-----|----------|-----------|
 |Display|[Display.h](https://github.com/UniQHW/SH5461AS/blob/master/Digit.h#L30)|Display controller class|  
-|Digit|[Digit.h](Digit.h)|Hardware abstraction for COM pins|
-|Segment|[Segment.h](Segment.h)|Hardware abstraction for segments|
+|Digit|[Digit.h](https://github.com/UniQHW/SH5461AS/blob/master/Digit.h#L30)|Hardware abstraction for COM pins|
+|Segment|[Segment.h](https://github.com/UniQHW/SH5461AS/blob/master/Segment.h#L30)|Hardware abstraction for segments|
 
-The Display class acts as a display controller and should be sufficient for most applications. It comes with a `print` function that displays the provided number string on the display. See [`class Display`](#class-display) for more.
+The Display class acts as a display controller and should be sufficient for most applications. It provides a `print` function that displays the provided number on the display. See [`class Display`](#class-display) for more.
 
 ### `class Display`
 A display controller class
@@ -141,8 +138,8 @@ The constructor is provided with the necessary pin information in order to succe
 
 |Parameter|Description|Example|
 |---------|-----------|-------|
-|byte digit_pins[4]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {A1, A2, A3, A4};`|
-|byte segment_pins[7]|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {A5, 12, 11, 0, A4, A0, 10};`|
+|byte digit_pins[4]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {6, 9, 10, 0};`|
+|byte segment_pins[7]|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {7, 11, 2, 4, 5, 8, 1};`|
 |byte dp_pin|Pin to control Decimal Point. Leave out if `#DISABLE_DP` has been defined|`1`|
 
 ![datasheet](http://mklec.com/image/data/displays/7-segment-4-digit-display-common-anode-12-pin--pinout.png)
@@ -151,7 +148,7 @@ The constructor is provided with the necessary pin information in order to succe
 
 |Member|Access|Description|
 |------|------|-----------|
-|bool state|Private|A private state buffer for `toggle()`|
+|bool state|Private|A private flag for `toggle()`|
 |Digit *digits[4]|Public|Stores [digit objects](#digit) to activate/disable COMs|
 |Segment *segments[7]|Public|Stores [segment objects](#segment) from `a - g (abc...g)` to activate and disable segments|
 |DecimalPoint *d|Public|Stores dp object (alias to [segment objects](#segment)) to activate/disable dp|
@@ -161,7 +158,7 @@ The constructor is provided with the necessary pin information in order to succe
 ##### `void print(const char[])`
 > Access: Public
 
-Prints a string of numbers onto display. The string may only include characters `\0`, `0-9` and `.` (unless `#DISABLE_DP` has been defined). **The print function requires to be constantly refreshed!**
+Prints a string of numbers onto the display. The string may only include characters `\0`, `0-9` and `.` (unless `#DISABLE_DP` has been defined). **The print function requires to be constantly refreshed!**
 
 If `\0` has been provided, no number is displayed (Ex: `print("1\0\01")` will display 1 on the first and last digit only).
 
@@ -190,12 +187,12 @@ Sets **all** digits to the provided state.
 ##### `void fill(bool all = true)`
 > Access: Public
 
-Turns all segments and decimal points to '**ON**' (unless `#DISABLE_DP` has been defined). If `bool all` has been set to `false`, only digits that are '**ON**' will be filled.
+Turns all segments and decimal points (unless `#DISABLE_DP` has been defined) to '**ON**'. If `bool all` has been set to `false`, only digits that are '**ON**' will be filled.
 
 ##### `void empty()`
 > Access: Public
 
-Turns all segments and decimal points to '**OFF**'.
+Turns all segments and decimal points (unless `#DISABLE_DP` has been defined) to '**OFF**'.
 
 ### `class Digit`
 A hardware abstraction for COM pins
@@ -215,7 +212,7 @@ Digit(byte pin);
 |Member|Access|Description|
 |------|------|-----------|
 |byte pin|Private|COM pin|
-|bool state|Private|A private state buffer for `toggle()`|
+|bool state|Private|A private flag for `toggle()`|
 
 #### Member Functions
 
@@ -258,7 +255,7 @@ Segment(byte pin);
 |Member|Access|Description|
 |------|------|-----------|
 |byte pin|Private|Segment pin|
-|bool state|Private|A private state buffer for `toggle()`|
+|bool state|Private|A private flag for `toggle()`|
 
 #### Member Functions
 
