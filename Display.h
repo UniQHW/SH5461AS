@@ -49,18 +49,15 @@ public:
   Display(byte digit_pins[4], byte segment_pins[7], byte dp_pin) {
     /* Assign dp */
     dp = new DecimalPoint(dp_pin);
-    dp->toggle(false);
 #endif
     /* Assign Digits */
     for (int i = 0; i < 4; i++) {
       digits[i] = new Digit(digit_pins[i]);
-      digits[i]->toggle(false);
     }
 
     /* Assign Segments */
     for (int i = 0; i < 7; i++) {
       segments[i] = new Segment(segment_pins[i]);
-      segments[i]->toggle(false);
     }
   }
 
