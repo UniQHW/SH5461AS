@@ -42,6 +42,8 @@ num_segs_t num_segs
 #ifdef DISABLE_DP
 void Display::print(const char num[4]) {
 
+  toggle(false);
+
   /* Display one digit at a time */
   for (int i = 0; i < strlen(num); i++) {
 
