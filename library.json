@@ -1,0 +1,15 @@
+{
+  "name": "SH5461AS",
+  "keywords" : "SH5461AS, 4-Digit, Segment, Display, Controller",
+  "description" : "Just another Arduino library to communicate with the SHA5461AS 4 Digit Segment Display",
+
+  "version": "0.1.0",
+  "frameworks": "arduino",
+  "platforms": "atmelavr",
+
+  "repository":
+  {
+    "type":"git",
+    "url": "https://github.com/UniQHW/SH5461AS.git"
+  }
+}
