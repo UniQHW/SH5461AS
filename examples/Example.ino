@@ -32,16 +32,14 @@ const byte digit_pins[4] {6, 9, 10, 0}; // From com1 - com4
 const byte segment_pins[7] {7, 11, 2, 4, 5, 8, 1}; // From a - g (abc...g)
 const byte dp_pin = 3;
 
-Display *d;
+Display d(digit_pins, segment_pins, dp_pin);
 
 void setup() {
   for (int i = 0; i <= A5; i++) {
     pinMode(i, OUTPUT);
   }
-
-  d = new Display(digit_pins, segment_pins, dp_pin);
 }
 
 void loop() {
-  d->print("1.234"); // Must be looped!
+  d.print("1.234"); // Must be looped!
 }
