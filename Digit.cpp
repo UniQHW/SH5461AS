@@ -29,8 +29,6 @@ void Digit::toggle() {
 }
 
 void Digit::toggle(bool arg_state) {
-  if (arg_state == state) {
-    state = !arg_state;
-    digitalWrite(pin, state);
-  }
+  state = !arg_state;
+  digitalWrite(pin, state);
 }
