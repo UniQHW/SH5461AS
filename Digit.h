@@ -29,7 +29,11 @@
 /* Digit - Hardware abstraction for COM pins */
 class Digit {
 public:
-  Digit(byte pin) : pin(pin) {digitalWrite(pin, OFF);}
+  Digit(byte pin) : pin(pin) {
+    digitalWrite(pin, OFF);
+    state = OFF;
+  }
+
   void toggle();
   void toggle(bool arg_state);
 
