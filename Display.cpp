@@ -65,6 +65,9 @@ void Display::print(const char num[4]) {
 #else
 
 void Display::print(const char num[5]) {
+
+  toggle(false);
+
   bool next_char_dp = false;
   int is_dp_num = 0;
 
