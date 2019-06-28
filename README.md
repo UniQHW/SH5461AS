@@ -65,8 +65,8 @@ The following example prints `1.234` to the display
 #include "Digit.h"
 #include "Display.h"
 
-const byte digit_pins[4] {6, 9, 10, 0}; // From com1 - com4
-const byte segment_pins[7] {7, 11, 2, 4, 5, 8, 1}; // From a - g (abc...g)
+const byte digit_pins[4] {6, 9, 10, 12}; // From com1 - com4
+const byte segment_pins[7] {7, 11, 2, 4, 5, 8, 13}; // From a - g (abc...g)
 const byte dp_pin = 3;
 
 Display d(digit_pins, segment_pins, dp_pin);
@@ -81,10 +81,6 @@ void loop() {
   d.print("1.234"); // Must be looped!
 }
 ```
-
-Setup used for example:
-
-![fritzing](img/Fritzing.svg)
 
 Result:
 
@@ -136,9 +132,9 @@ The constructor is provided with the necessary pin information in order to succe
 
 |Parameter|Description|Example|
 |---------|-----------|-------|
-|byte digit_pins[4]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {6, 9, 10, 0};`|
-|byte segment_pins[7]|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {7, 11, 2, 4, 5, 8, 1};`|
-|byte dp_pin|Pin to control Decimal Point. Leave out if `#DISABLE_DP` has been defined|`1`|
+|byte digit_pins[4]|Array of digit pins `COM1 - COM4`|`byte digit_pins[4] {6, 9, 10, 12};`|
+|byte segment_pins[7]|Array of segment pins `a - g (abc..g)`|`byte segment_pins[7] {7, 11, 2, 4, 5, 8, 13};`|
+|byte dp_pin|Pin to control Decimal Point. Leave out if `#DISABLE_DP` has been defined|`13`|
 
 ![datasheet](http://mklec.com/image/data/displays/7-segment-4-digit-display-common-anode-12-pin--pinout.png)
 
